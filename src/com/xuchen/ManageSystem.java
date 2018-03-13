@@ -22,7 +22,7 @@ public class ManageSystem {         //管理系统类
         System.out.println("(总共可以输入9个数据)");
         for (int i = 0; i < 9; i++) {
             System.out.println("请输入第" + (i + 1) + "个数据");
-            int c = us.judge(us);
+            int c = us.judge();
             if (c == 0) {
                 System.out.println("添加数据不能为0，请重新输入");
                 i--;
@@ -83,20 +83,21 @@ public class ManageSystem {         //管理系统类
         System.out.println();
     }
 
-    public int judge(ManageSystem us) {         //方法用于判断用户输入类型是否为int型数据，是则返回该值，不是提示重新输入
+    public int judge() {         //方法用于判断用户输入类型是否为int型数据，是则返回该值，不是则提示重新输入
         int a = 2;
+        Scanner aa = new Scanner(System.in);
         while (TRUE) {
+
             try {
-                Scanner aa = new Scanner(System.in);
                 a = aa.nextInt();
                 break;
             } catch (java.util.InputMismatchException e) {
                 System.out.println("异常警告：请不要输入非int类型的数据！！！");
+                aa.next();
 
             }
-
-
         }
+
         return a;
     }
 
@@ -107,12 +108,13 @@ public class ManageSystem {         //管理系统类
         int[] b = new int[10];
         us.notice();
         while (TRUE) {                              //程序循环执行起点
-            a = us.judge(us);
+            a = us.judge();
 
             while (TRUE) {          //判定a的范围在0~4后跳出循环，否则提示重新输入
                 if (a < 0 || a > 4) {
                     System.out.println("请重新输入(提示：0~4)");
                     us.notice();
+                    a = us.judge();
                 } else {
                     break;
                 }
@@ -139,13 +141,13 @@ public class ManageSystem {         //管理系统类
                         break;
                     }
                     System.out.println("请输入要插入的数据");
-                    int n = us.judge(us);
+                    int n = us.judge();
                     System.out.println("请输入要插入的位置（0~9）");
-                    int k = us.judge(us);
+                    int k = us.judge();
                     while (TRUE) {
                         if (k < 0 || k > 9) {
                             System.out.println("插入位置错误，请重新插入");
-                            k = us.judge(us);
+                            k = us.judge();
                         } else {
                             break;
                         }
